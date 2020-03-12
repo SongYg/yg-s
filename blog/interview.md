@@ -11,7 +11,7 @@
         * 就绪状态
         * 执行状态
         * 阻塞状态
-        ![TCP拥塞控制机制](https://github.com/SongYg/yg-s/blob/master/fig/process-status.png?raw=true)
+        ![TCP拥塞控制机制](https://github.com/SongYg/yg-s/blob/master/blog/fig/process-status.png?raw=true)
 
 
     * 进程和线程的区别？
@@ -155,6 +155,8 @@
     * Django 都分什么模块
 
 ## 数据库
+* MySQL 解释执行过程
+
 ## 网络
 * OSI 5层结构
     * 应用层、（表示层、会话层）、传输层、网络层、链路层、物理层
@@ -179,11 +181,11 @@
         * 拥塞避免(congestion avoidance)：大于阈值，每一个RTT加一，ssh减半
         * 快重传(fast retransmit)：三个重复报文，重新发送未确认的报文段
         * 快恢复(fast recovery)：ssh减半，拥塞避免算法
-        ![TCP拥塞控制机制](https://github.com/SongYg/yg-s/blob/master/fig/tcp.png?raw=true)
+        ![TCP拥塞控制机制](https://github.com/SongYg/yg-s/blob/master/blog/fig/tcp.png?raw=true)
 
     * 三次握手与四次挥手
-        ![三次握手连接](https://github.com/SongYg/yg-s/blob/master/fig/tcp-connect.png?raw=true)
-        ![三次握手连接](https://github.com/SongYg/yg-s/blob/master/fig/tcp-close.png?raw=true)
+        ![三次握手连接](https://github.com/SongYg/yg-s/blob/master/blog/fig/tcp-connect.png?raw=true)
+        ![三次握手连接](https://github.com/SongYg/yg-s/blob/master/blog/fig/tcp-close.png?raw=true)
 
     * 为什么采用3次握手而不是2次？
         * 防止“失效的连接请求”在服务器端占用资源客户端发出了连接请求，但该数据报在网络中某处滞留了客户端等待超时后，重发连接请求，服务器响应，建立连接滞留的连接请求又到达服务器端，如果采用2次握手，服务器将建立一个连接，分配资源(缓冲区、定时器、…) 占用资源且长期存活
@@ -201,10 +203,10 @@
         * 服务器发送HTML超文本
         * 关闭TCP连接，四次挥手
         * 浏览器解析
-        ![三次握手连接](https://github.com/SongYg/yg-s/blob/master/fig/http-query.png?raw=true)
+        ![三次握手连接](https://github.com/SongYg/yg-s/blob/master/blog/fig/http-query.png?raw=true)
     * HTTP报文：
-        ![HTTP请求报文](https://github.com/SongYg/yg-s/blob/master/fig/http-request.png?raw=true)
-        ![HTTP应答报文v](https://github.com/SongYg/yg-s/blob/master/fig/http-response.png?raw=true)
+        ![HTTP请求报文](https://github.com/SongYg/yg-s/blob/master/blog/fig/http-request.png?raw=true)
+        ![HTTP应答报文v](https://github.com/SongYg/yg-s/blob/master/blog/fig/http-response.png?raw=true)
 
     * HTTP常见状态码
         * HTTP是无状态的：服务器不记录客户端的访问状态：对于事务处理没有记忆能力，服务器不知道客户端是什么状态。即给服务器发送 HTTP 请求之后，服务器根据请求发送数据，发送完毕不会记录任何信息。

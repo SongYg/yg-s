@@ -1,9 +1,9 @@
 # Postgres 词法分析和语法分析
 ## 整体介绍
 Postgres main 函数都通过调用 exec_simple_query() 函数执行 SQL 语句，exec_simple_query() 通过一系列初始化后会首先对 SQL 语句进行词法分析和语法分析。词法分析和语法分析主要是调用函数 pg_parse_query() 完成的，pg_parse_query() 会调用 raw_parser() 获取词法分析和语法分析的 parsertree，过程如下（图中的1、2、3、4）：
-![Postgres 主要过程调用图](https://github.com/SongYg/yg-s/blob/master/fig/exec_simple_query.png?raw=true)
+![Postgres 主要过程调用图](https://github.com/SongYg/yg-s/blob/master/blog/fig/exec_simple_query.png?raw=true)
 语法解析与词法解析的函数调用图如下：
-![Postgres 词法语法分析](https://github.com/SongYg/yg-s/blob/master/fig/raw_parser.png?raw=true)
+![Postgres 词法语法分析](https://github.com/SongYg/yg-s/blob/master/blog/fig/raw_parser.png?raw=true)
 
 ## List 结构
 raw_parser() 函数返回的 yyextra.parsetree 是 List 类型，实际上用来 Flex/Bison 工具完成的词法和语法分析，具体实现过程在 scan.l 和 gram.y 文件内。结合 gram.y 可以看到返回的 List* parser_tree 是什么样的，选取 gram.y 中的 simple_select 的代码：
