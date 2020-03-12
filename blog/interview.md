@@ -107,10 +107,52 @@
     * sort排序时候使用lambda表达式
     * map filter reduce时候使用lambda表达式
 
+* Python装饰器
+
+* Singleton
+    * 函数解释器
+    ```python
+    def singleton(cls):
+        _instance = dict()
+
+        def new_cls(*args, **kwargs):
+            if cls not in _instance:
+                _instance[cls] = cls(*args, **kwargs)
+            return _instance[cls]
+        return new_cls
+
+
+    @singleton
+    class Student(object):
+        def __init__(self):
+            self.count = 0
+
+        def run(self, n):
+            for _ in range(n):
+                self.count += 1
+                print(self.count)
+
+    ```
+
+    * `__new__`
+    ```python
+    class Singleton(object):
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = object.__new__(cls, *args, **kwargs)
+        return cls._instance
+
+    def __init__(self):
+        pass
+    ```
+* 解释执行过程
+
+
 * Django
     * MVC
-    * 设计模式
-    * 
+    * Django 都分什么模块
 
 ## 数据库
 ## 网络
@@ -129,6 +171,8 @@
         * 数据包检验，检验和校准；TCP的可靠传输通过校验和+超时重传实现；Sequence和ACK确认机制，保证有序；丢弃重复报文；超时重传；拥塞避免。
     * TCP协议的流量控制
         * 通过滑动窗口模型进行流量控制，开始传输数据时，交换各自滑动窗口大小，之后的TCP包头中窗口大小；1个数据探测回复窗口
+    * 滑动窗口的作用？
+        * 为了可靠性传输与控制速率，接受速率是有限的，如果发送速率太快超过缓存的能力就会造成丢数据，TCP的传输是可靠的所以需要用滑动窗口机制来保证，另一方面滑动窗口可以控制传输速率，TCP协议通过协商发送端和接收端的滑动窗口取最小值，当一方缓存有限，就可以通过减少滑动窗口的值来防止大量包进来，控制流量的速率。
     * TCP的拥塞控制机制
         * 拥塞控制主要是减轻网络负担，流量控制主要是为了减轻点和点之间的负担。
         * 慢启动(slow-start)，又称为慢开始：一个报文增加1，一个RTT翻一番
@@ -189,4 +233,12 @@
         * 在执行效率来说，GET比POST好
 
 ## 算法
+* 外排序
+* 前缀树
 ## 数据结构
+
+## 其他
+* 设计模式
+* 如何计算Pi
+    * 概率
+    * 级数：arctan x = x - x^3/3 + x^5/5 - x^7/7 ...
