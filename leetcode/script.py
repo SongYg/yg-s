@@ -1,34 +1,37 @@
-# Python实现
 class Solution:
-    def maxPerformance(self, n: int, speed: list, efficiency: list, k: int) -> int:
-        MOD = int(10 ** 9 + 7)
-        team = [[speed[i], efficiency[i]] for i in range(n)]
-        team.sort(key=lambda x: (x[1], x[0]), reverse=True)
-        from queue import PriorityQueue
-        pq = PriorityQueue()
-        speedSum = 0
-        maxPerf = 0
+    def maxAreaOfIsland(self, grid: list) -> int:
+        if len(grid) < 1:
+            return 0
 
-        for i in range(n):
-            if i < k:
-                pq.put(team[i][0])
-                speedSum += team[i][0]
-                maxPerf = max([maxPerf, speedSum * team[i][1]])
-            else:
-                if team[i][0] > pq.queue[0]:
-                    speed_ = pq.get()
-                    pq.put(team[i][0])
-                    speedSum = speedSum - speed_ + team[i][0]
-                    maxPerf = max([maxPerf, speedSum * team[i][1]])
+        def dfs(cur_i, cur_j):
+            if cur_i < 0 or cur_i >= len(grid) or cur_j < 0 or cur_j >= len(grid[0]) or grid[cur_i][cur_j] == 0:
+                return 0
+            grid[cur_i][cur_j] = 0
 
-        return maxPerf % MOD
+            ans = 1
+            for di, dj in [[1, 0], [-1, 0], [0, 1], [0, -1]]:
+                next_i, next_j = cur_i + di, cur_j + dj
+                ans += dfs(next_i, next_j)
+            return ans
+
+        max_area = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                ans = dfs(i, j)
+                max_area = max([max_area, ans])
+        return max_area
 
 
 s = Solution()
-n = 6
-speed = [10, 5, 1, 7, 4, 2]
-efficiency = [2, 1, 1, 1, 7, 3]
-k = 6
+grid = [[0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+        [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
+        [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]]
 
-res = s.maxPerformance(n, speed, efficiency, k)
+
+res = s.maxAreaOfIsland(grid)
 print(res)
